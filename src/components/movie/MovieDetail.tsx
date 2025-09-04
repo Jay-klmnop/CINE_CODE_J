@@ -1,22 +1,27 @@
-import { IMAGE_BASE_URL } from '@/constants/url';
+import { getImageUrl } from '@/utils';
 import type { MovieDetailPageType } from '@/types/movie';
+import { FaStar } from 'react-icons/fa';
 
 interface MovieDetailProps {
   movie: MovieDetailPageType;
 }
 
 export default function MovieDetail({ movie }: MovieDetailProps) {
+  const IMAGE_BASE_URL = getImageUrl(movie.backdrop_path);
   return (
     <div className='mx-5 my-4 flex max-h-screen min-h-80 w-full min-w-60 flex-col items-center justify-center rounded-lg bg-white p-4 text-center text-xs shadow-md transition-opacity duration-300 ease-in-out lg:flex-row lg:justify-around lg:text-sm'>
       <img
-        src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+        src={`${IMAGE_BASE_URL}`}
         alt={movie.title}
         className='lg: h-full w-full overflow-hidden object-cover lg:min-w-xl'
       />
       <div className='flex flex-col items-center gap-6 px-2 pb-4 lg:items-start'>
         <div className='flex h-24 flex-col gap-3 pt-4 lg:gap-6'>
           <h3 className='text-4xl font-bold'>{movie.title}</h3>
-          <p className='text-lg font-light'>★ {movie.vote_average}</p>
+          <div className='flex items-center justify-center'>
+            <FaStar size={18} />
+            <p className='text-lg leading-0 font-light'>{movie.vote_average}</p>
+          </div>
         </div>
         <div>
           {movie.genres.map((genre) => (
