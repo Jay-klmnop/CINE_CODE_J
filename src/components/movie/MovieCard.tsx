@@ -22,7 +22,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         </figure>
         <div className='w-full'>
           <h3 className='h-14 text-left text-lg font-bold'>{movie.title}</h3>
-          <div className='flex items-center justify-end gap-2'>
+          <div className='flex justify-end gap-2'>
             <FaStar size={16} />
             <p className='h-5 text-right text-sm font-light'>{movie.vote_average}</p>
           </div>

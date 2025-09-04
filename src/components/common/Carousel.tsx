@@ -5,9 +5,8 @@ interface CarouselProps {
   items: ReactNode[];
 }
 
-export function Carousel({ items }: CarouselProps) {
+export default function Carousel({ items }: CarouselProps) {
   const [emblaRef] = useEmblaCarousel({
-    loop: true,
     align: 'start',
     dragFree: true,
     containScroll: 'trimSnaps',

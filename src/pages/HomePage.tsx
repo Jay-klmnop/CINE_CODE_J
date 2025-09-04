@@ -5,7 +5,7 @@ import { MovieCarousel } from '@/components/movie';
 import { useFetch } from '@/hooks/useFetch';
 import { TMDB_ACCESS_TOKEN } from '@/constants';
 import { getPopularMoviesUrl } from '@/utils';
-import { MovieCardSkeleton } from '@/components/skeleton/MovieCardSkeleton';
+import { CardSkeleton } from '@/components/skeleton/CardSkeleton';
 import { SwitchCase } from '@/components/common';
 import { Carousel } from '@/components/common';
 
@@ -57,7 +57,7 @@ export default function HomePage() {
             loading: (
               <Carousel
                 items={Array.from({ length: 5 }).map((_, i) => (
-                  <MovieCardSkeleton key={i} />
+                  <CardSkeleton key={i} />
                 ))}
               />
             ),
@@ -73,7 +73,7 @@ export default function HomePage() {
             loading: (
               <div className='mx-4 my-4 grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4'>
                 {Array.from({ length: 8 }).map((_, i) => (
-                  <MovieCardSkeleton key={i} />
+                  <CardSkeleton key={i} />
                 ))}
               </div>
             ),

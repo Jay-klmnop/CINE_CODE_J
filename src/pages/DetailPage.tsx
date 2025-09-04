@@ -6,7 +6,7 @@ import { TMDB_ACCESS_TOKEN } from '@/constants';
 import { useFetch } from '@/hooks/useFetch';
 import { getMovieDetailsUrl } from '@/utils';
 import { ErrorBoundary } from '@suspensive/react';
-import { MovieDetailSkeleton } from '@/components/skeleton/MovieDetailSkeleton';
+import { DetailSkeleton } from '@/components/skeleton/DetailSkeleton';
 
 export default function DetailPage() {
   const [movie, setMovie] = useState<MovieDetailType | null>(null);
@@ -32,7 +32,7 @@ export default function DetailPage() {
     }
   }, [data]);
 
-  if (loading && !movie) return <MovieDetailSkeleton />;
+  if (loading && !movie) return <DetailSkeleton />;
   if (error) throw error;
 
   return (
