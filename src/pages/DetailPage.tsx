@@ -5,6 +5,8 @@ import { useParams } from 'react-router';
 import { TMDB_ACCESS_TOKEN } from '@/constants';
 import { useFetch } from '@/hooks/useFetch';
 import { getMovieDetailsUrl } from '@/utils';
+import { ErrorBoundary } from '@suspensive/react';
+import { MovieDetailSkeleton } from '@/components/skeleton/MovieDetailSkeleton';
 
 export default function DetailPage() {
   const [movie, setMovie] = useState<MovieDetailType | null>(null);
@@ -30,12 +32,12 @@ export default function DetailPage() {
     }
   }, [data]);
 
-  if (loading && !movie) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading && !movie) return <MovieDetailSkeleton />;
+  if (error) throw error;
 
   return (
-    <div className='m-5 flex items-center justify-center'>
-      {movie ? <MovieDetail key={movie.id} movie={movie} /> : <div>No Movie Found</div>}
-    </div>
+    <ErrorBoundary fallback={({ error }) => <div>Error: {error.message}</div>}>
+      {movie && <MovieDetail movie={movie} />}
+    </ErrorBoundary>
   );
 }

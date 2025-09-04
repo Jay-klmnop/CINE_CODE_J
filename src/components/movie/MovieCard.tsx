@@ -12,7 +12,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   const IMAGE_BASE_URL = getImageUrl(movie.poster_path);
   return (
     <Link to={`/details/${movie.id}`}>
-      <div className='flex aspect-7/10 max-h-[500px] min-h-80 min-w-60 flex-col items-center gap-2 rounded-lg bg-white p-4 text-xs shadow-md transition-opacity duration-300 ease-in-out'>
+      <div className='flex aspect-2/3 max-h-[500px] min-h-80 min-w-60 flex-col items-center gap-2 rounded-lg bg-white p-4 text-xs shadow-md transition-opacity duration-300 ease-in-out'>
         <figure className='relative aspect-4/5 w-full overflow-hidden rounded-lg'>
           <img
             src={`${IMAGE_BASE_URL}`}
