@@ -5,7 +5,7 @@ interface CarouselProps {
   items: ReactNode[];
 }
 
-export default function Carousel({ items }: CarouselProps) {
+export function Carousel({ items }: CarouselProps) {
   const [emblaRef] = useEmblaCarousel({
     align: 'start',
     dragFree: true,

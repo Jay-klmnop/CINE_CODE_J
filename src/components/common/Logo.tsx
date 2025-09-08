@@ -1,0 +1,11 @@
+import { RiMovie2Fill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+
+export function Logo() {
+  return (
+    <Link to='/' className='flex justify-center text-white'>
+      <h1 className='text-lg font-black'>OZ</h1>
+      <RiMovie2Fill />
+    </Link>
+  );
+}

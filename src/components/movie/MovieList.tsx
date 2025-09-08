@@ -7,7 +7,7 @@ interface MovieListProps {
 
 export default function MovieList({ movies }: MovieListProps) {
   if (!movies || movies.length === 0) {
-    return <div>표시할 영화가 없습니다.</div>;
+    return <div>No Movies to display.</div>;
   }
 
   return (

@@ -37,7 +37,9 @@ export default function DetailPage() {
 
   return (
     <ErrorBoundary fallback={({ error }) => <div>Error: {error.message}</div>}>
-      {movie && <MovieDetail movie={movie} />}
+      <div className='flex items-center justify-center'>
+        {movie && <MovieDetail movie={movie} />}
+      </div>
     </ErrorBoundary>
   );
 }

@@ -18,6 +18,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
             src={`${IMAGE_BASE_URL}`}
             alt={movie.title}
             className='absolute inset-0 h-full w-full object-cover object-center'
+            loading='lazy'
           />
         </figure>
         <div className='w-full'>
