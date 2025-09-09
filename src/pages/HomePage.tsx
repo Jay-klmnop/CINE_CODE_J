@@ -1,21 +1,18 @@
-import type { MovieType } from '@/types/movie';
-import { useEffect, useMemo, useState } from 'react';
+import type { MovieApiResponse, MovieType } from '@/types/movie';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { MovieList } from '@/components/movie';
 import { MovieCarousel } from '@/components/movie';
-import { useFetch } from '@/hooks/useFetch';
+import { useFetch, useIntersectionObserver } from '@/hooks';
 import { TMDB_ACCESS_TOKEN } from '@/constants';
 import { getPopularMoviesUrl } from '@/utils';
-import { CardSkeleton } from '@/components/skeleton/CardSkeleton';
 import { SwitchCase } from '@/components/common';
-import { Carousel } from '@/components/common';
-
-interface TmdbApiResponse {
-  results: MovieType[];
-}
+import { CarouselSkeleton, ListSkeleton } from '@/components/skeleton';
 
 export default function HomePage() {
   const [allMovies, setAllMovies] = useState<MovieType[]>([]);
-  const API_URL = getPopularMoviesUrl();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const API_URL = getPopularMoviesUrl(currentPage);
 
   const fetchOptions = useMemo(
     () => ({
@@ -28,14 +25,26 @@ export default function HomePage() {
     []
   );
 
-  const { data, loading, error } = useFetch<TmdbApiResponse>(API_URL, fetchOptions);
+  const { data, loading, error } = useFetch<MovieApiResponse>(API_URL, fetchOptions);
 
   useEffect(() => {
-    if (data && data.results) {
-      const filteredMovies = data?.results.filter((movie) => !movie.adult);
-      setAllMovies(filteredMovies);
+    if (data?.results) {
+      const filteredMovies = data.results.filter((movie) => !movie.adult);
+      setAllMovies((prevMovies) => {
+        const existingIds = new Set(prevMovies.map((m) => m.id));
+        const newMovies = filteredMovies.filter((m) => !existingIds.has(m.id));
+        return [...prevMovies, ...newMovies];
+      });
     }
   }, [data]);
+
+  const handleLoadMore = useCallback(() => {
+    if (!loading && data && data.page < data.total_pages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  }, [loading, data]);
+
+  const { ref: loadMoreRef } = useIntersectionObserver({ onIntersect: handleLoadMore });
 
   const highlyRatedMovies = useMemo(() => {
     return allMovies.filter((movie) => movie.vote_average >= 7);
@@ -53,15 +62,7 @@ export default function HomePage() {
         <h2 className='px-4 text-4xl'>Highly-Rated Movies</h2>
         <SwitchCase
           value={status}
-          caseBy={{
-            loading: (
-              <Carousel
-                items={Array.from({ length: 5 }).map((_, i) => (
-                  <CardSkeleton key={i} />
-                ))}
-              />
-            ),
-          }}
+          caseBy={{ loading: <CarouselSkeleton /> }}
           defaultComponent={<MovieCarousel movies={highlyRatedMovies} />}
         />
       </div>
@@ -69,19 +70,13 @@ export default function HomePage() {
         <h2 className='px-4 text-4xl'>Popular Movies</h2>
         <SwitchCase
           value={status}
-          caseBy={{
-            loading: (
-              <div className='mx-4 my-4 grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4'>
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <CardSkeleton key={i} />
-                ))}
-              </div>
-            ),
-          }}
+          caseBy={{ loading: <ListSkeleton /> }}
           defaultComponent={
             allMovies.length > 0 ? <MovieList movies={allMovies} /> : <div>No movies found</div>
           }
         />
+        {!loading && <div ref={loadMoreRef} style={{ height: '50px' }} />}
+        {loading && allMovies.length > 0 && <ListSkeleton />}
       </div>
     </div>
   );
