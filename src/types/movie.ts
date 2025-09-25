@@ -79,7 +79,7 @@ export interface MovieDetailType {
 
 export interface MovieDetailPageType {
   id: number;
-  backdrop_path: string;
+  poster_path: string;
   title: string;
   vote_average: number;
   genres: { id: number; name: string }[];
