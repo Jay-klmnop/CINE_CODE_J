@@ -18,11 +18,11 @@ export function SearchInput() {
   }, [debouncedSearchTerm, navigate, location.search]);
 
   return (
-    <div className='relative mx-4 flex flex-1 rounded bg-white'>
+    <div className='relative mx-4 flex flex-1'>
       <FaSearch className='absolute top-2 left-2' size={16} />
       <input
         type='text'
-        className='flex h-8 flex-1 rounded pl-7 focus:ring-0 focus:outline-none'
+        className='input flex h-8 flex-1 pl-7 focus:border-b'
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
       />

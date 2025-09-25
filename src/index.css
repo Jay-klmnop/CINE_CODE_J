@@ -1,1 +1,72 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@custom-variant dark (&.dark, .dark &);
+
+@layer base {
+  body {
+    @apply bg-zinc-50 text-black;
+
+    @variant dark {
+      @apply bg-black text-zinc-50;
+    }
+  }
+}
+
+@layer components {
+  .centralize {
+    @apply flex items-center justify-center;
+  }
+
+  .modal,
+  .header {
+    @apply bg-zinc-50 text-black;
+
+    @variant dark {
+      @apply bg-zinc-900 text-zinc-50;
+    }
+  }
+
+  .input {
+    @apply focus:ring-0 focus:outline-none;
+
+    &.account-input {
+      @apply w-full rounded-md border-transparent bg-white p-2 text-zinc-800;
+
+      @variant dark {
+        @apply bg-zinc-200 text-zinc-900;
+      }
+    }
+  }
+
+  .button {
+    @apply rounded-md border-transparent text-center;
+
+    &.main-button {
+      @apply bg-zinc-800 text-white hover:bg-zinc-700;
+
+      @variant dark {
+        @apply bg-zinc-400 text-black hover:bg-zinc-500;
+      }
+    }
+
+    &.side-button {
+      @apply bg-zinc-300 text-black hover:bg-zinc-400;
+
+      @variant dark {
+        @apply bg-zinc-800 text-zinc-300 hover:bg-zinc-700;
+      }
+    }
+  }
+
+  .sub-text {
+    @apply text-zinc-500;
+
+    &.linked-text {
+      @apply text-zinc-700 hover:underline;
+
+      @variant dark {
+        @apply text-zinc-400;
+      }
+    }
+  }
+}
