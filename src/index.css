@@ -30,7 +30,7 @@
     @apply focus:ring-0 focus:outline-none;
 
     &.account-input {
-      @apply w-full border-transparent bg-white p-2 text-zinc-800;
+      @apply w-full rounded-md border-transparent bg-white p-2 text-zinc-800;
 
       @variant dark {
         @apply bg-zinc-200 text-zinc-900;

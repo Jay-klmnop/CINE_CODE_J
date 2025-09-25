@@ -13,7 +13,7 @@ const SignupModal = () => {
     e.preventDefault();
     setError(null);
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -36,7 +36,7 @@ const SignupModal = () => {
             placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className='w-full rounded-md border p-2'
+            className='input account-input'
             required
           />
           <input
@@ -44,12 +44,12 @@ const SignupModal = () => {
             placeholder='Password (at least 6 characters)'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className='w-full rounded-md border'
+            className='input account-input'
             required
           />
         </div>
         {error && <p className='mt-2 text-sm text-red-500'>{error}</p>}
-        <button type='submit' className='mt-6 w-full rounded-md border'>
+        <button type='submit' className='button main-button mt-6 w-full p-2'>
           Sign Up
         </button>
       </form>
