@@ -1,0 +1,6 @@
+export {
+  TMDB_ACCESS_TOKEN,
+  TMDB_API_BASE_URL,
+  TMDB_IMAGE_BASE_URL,
+  API_ENDPOINTS,
+} from './apiConfig';

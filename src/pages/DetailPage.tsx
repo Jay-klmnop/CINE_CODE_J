@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
-import { MovieDetail } from '@/components/movie';
-import type { MovieDetailType } from '@/types/movie';
+import type { MovieDetailType } from '@/features/movie/types/movie';
 import { useParams } from 'react-router';
-import { TMDB_ACCESS_TOKEN } from '@/constants';
+import { TMDB_ACCESS_TOKEN } from '@/shared/config';
 import { useFetch } from '@/hooks/useFetch';
-import { getMovieDetailsUrl } from '@/utils';
+import { getMovieDetailsUrl } from '@/api';
 import { ErrorBoundary } from '@suspensive/react';
-import { DetailSkeleton } from '@/components/skeleton/DetailSkeleton';
+import { DetailSkeleton } from '@/components/ui/DetailSkeleton';
+import { MovieDetail } from '@/features/movie';
 
 export default function DetailPage() {
   const [movie, setMovie] = useState<MovieDetailType | null>(null);

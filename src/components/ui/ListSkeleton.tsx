@@ -1,4 +1,4 @@
-import { CardSkeleton } from '@/components/skeleton/CardSkeleton';
+import { CardSkeleton } from '@/components/ui/CardSkeleton';
 
 export function ListSkeleton({ count = 14 }: { count?: number }) {
   return (

@@ -1,5 +1,5 @@
-import { useAuthStore } from '@/stores';
-import { SigninModal, SignupModal } from '@/features/auth/ui';
+import { useAuthStore } from '@/features/auth';
+import { SigninModal, SignupModal } from '@/features/auth';
 
 const GlobalModalManager = () => {
   const { modalType } = useAuthStore();

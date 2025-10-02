@@ -1,6 +1,6 @@
 import { Logo, SearchInput } from '@/components/common';
-import { useAuthStore } from '@/stores';
-import { supabase } from '@/utils';
+import { useAuthStore } from '@/features/auth/store';
+import { supabase } from '@/api';
 import { ThemeToggle } from '@/components/common';
 
 export default function NavBar() {
@@ -11,7 +11,7 @@ export default function NavBar() {
   };
 
   return (
-    <header className='header fixed z-50 flex h-14 w-full items-center justify-between px-5 py-2 whitespace-nowrap shadow-md'>
+    <header className='header fixed z-50 flex h-14 w-full items-center justify-between px-5 py-2 whitespace-nowrap'>
       <Logo />
       <div className='flex flex-1 items-center justify-end gap-4'>
         <SearchInput />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { supabase } from '@/utils';
-import { useAuthStore } from '@/stores';
+import { supabase } from '@/api';
+import { useAuthStore } from '@/features/auth/store';
 import { Modal } from '@/shared/ui';
 import type { Provider } from '@supabase/supabase-js';
 
