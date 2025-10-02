@@ -1,4 +1,4 @@
-import { TMDB_API_BASE_URL, API_ENDPOINTS, TMDB_IMAGE_BASE_URL } from '@/constants';
+import { TMDB_API_BASE_URL, API_ENDPOINTS, TMDB_IMAGE_BASE_URL } from '@/shared/config';
 
 export const getPopularMoviesUrl = (page: number = 1) => {
   return `${TMDB_API_BASE_URL}/${API_ENDPOINTS.POPULAR}?page=${page}`;

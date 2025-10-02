@@ -17,8 +17,8 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
   };
 
   return (
-    <div className='centralize modal fixed inset-0 z-50 flex' onClick={handleBackdropClick}>
-      <div className='relative w-full max-w-md rounded-lg p-6 shadow-xl'>
+    <div className='centralize modal fixed inset-0 z-100 h-3/5' onClick={handleBackdropClick}>
+      <div className='relative w-full max-w-md rounded-lg p-6'>
         <div className='flex items-start justify-between'>
           <h2 className='text-xl font-bold'>{title}</h2>
           <button onClick={onClose} className='text-2xl font-light'>

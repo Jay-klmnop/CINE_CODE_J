@@ -1,12 +1,11 @@
-import type { MovieApiResponse, MovieType } from '@/types/movie';
+import type { MovieApiResponse, MovieType } from '@/features/movie/types/movie';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { MovieList } from '@/components/movie';
-import { MovieCarousel } from '@/components/movie';
 import { useFetch, useIntersectionObserver } from '@/hooks';
-import { TMDB_ACCESS_TOKEN } from '@/constants';
-import { getPopularMoviesUrl } from '@/utils';
+import { TMDB_ACCESS_TOKEN } from '@/shared/config';
+import { getPopularMoviesUrl } from '@/api';
 import { SwitchCase } from '@/components/common';
-import { CarouselSkeleton, ListSkeleton } from '@/components/skeleton';
+import { CarouselSkeleton, ListSkeleton } from '@/components/ui';
+import { MovieCarousel, MovieList } from '@/features/movie';
 
 export default function HomePage() {
   const [allMovies, setAllMovies] = useState<MovieType[]>([]);
@@ -58,14 +57,11 @@ export default function HomePage() {
 
   return (
     <div className='flex flex-col justify-center gap-6 p-4'>
-      <div className='flex flex-col gap-5'>
-        <h2 className='px-4 text-4xl'>Highly-Rated Movies</h2>
-        <SwitchCase
-          value={status}
-          caseBy={{ loading: <CarouselSkeleton /> }}
-          defaultComponent={<MovieCarousel movies={highlyRatedMovies} />}
-        />
-      </div>
+      <SwitchCase
+        value={status}
+        caseBy={{ loading: <CarouselSkeleton /> }}
+        defaultComponent={<MovieCarousel movies={highlyRatedMovies} />}
+      />
       <div>
         <h2 className='px-4 text-4xl'>Popular Movies</h2>
         <SwitchCase

@@ -1,14 +1,31 @@
 @import 'tailwindcss';
 
+@theme {
+  --font-oswald: 'Oswald', 'sans-serif';
+  --font-sans: 'Noto Sans', 'sans-serif';
+
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 720px;
+  --breakpoint-md: 1080px;
+  --breakpoint-lg: 1440px;
+  --breakpoint-xl: 1800px;
+}
+
 @custom-variant dark (&.dark, .dark &);
 
 @layer base {
   body {
-    @apply bg-zinc-50 text-black;
+    @apply bg-zinc-50 font-sans text-black;
 
     @variant dark {
       @apply bg-black text-zinc-50;
     }
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-oswald font-bold;
   }
 }
 
@@ -17,9 +34,18 @@
     @apply flex items-center justify-center;
   }
 
-  .modal,
-  .header {
-    @apply bg-zinc-50 text-black;
+  .header,
+  .footer,
+  .genre {
+    @apply bg-zinc-100 text-black;
+
+    @variant dark {
+      @apply bg-zinc-900 text-zinc-50;
+    }
+  }
+
+  .modal {
+    @apply bg-zinc-100 text-black opacity-90;
 
     @variant dark {
       @apply bg-zinc-900 text-zinc-50;
@@ -67,6 +93,14 @@
       @variant dark {
         @apply text-zinc-400;
       }
+    }
+  }
+
+  .reaction-button-menu {
+    @apply bg-gradient-to-t from-zinc-200 to-transparent text-black;
+
+    @variant dark {
+      @apply bg-gradient-to-t from-zinc-900 to-transparent text-white;
     }
   }
 }

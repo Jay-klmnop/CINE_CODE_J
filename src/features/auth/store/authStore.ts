@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { Session, User } from '@supabase/supabase-js';
-import { supabase } from '@/utils';
+import { supabase } from '@/api';
 
 type ModalType = 'signin' | 'signup' | null;
 type ThemeType = 'light' | 'dark';

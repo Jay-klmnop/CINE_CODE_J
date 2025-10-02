@@ -1,14 +1,14 @@
-import { MovieList } from '@/components/movie';
 import { useSearchParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { TMDB_ACCESS_TOKEN } from '@/constants';
-import { getSearchUrl } from '@/utils/api';
+import { TMDB_ACCESS_TOKEN } from '@/shared/config';
+import { getSearchUrl } from '@/api/api';
 import { useFetch } from '@/hooks/useFetch';
 import { ErrorBoundary } from '@suspensive/react';
-import { ListSkeleton } from '@/components/skeleton';
-import type { MovieApiResponse, MovieType } from '@/types/movie';
+import { ListSkeleton } from '@/components/ui';
+import type { MovieApiResponse, MovieType } from '@/features/movie';
 import { useIntersectionObserver } from '@/hooks';
 import { SwitchCase } from '@/components/common';
+import { MovieList } from '@/features/movie';
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams();
